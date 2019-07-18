@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fee1c83832914f6d92d7dba4db0499c7" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="ARCOeCardDBModel.Attachment" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.CSRAssignment" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.CusAddress" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.Customer" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.NotifyEmail" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.OrderStatu" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.PrenotesUser" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.PreNoteSystem" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.SalesOrder" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.SiteLocation" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="ARCOeCardDBModel.UserSiteLocation" Width="1.5" PointX="5.75" PointY="10.75" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_Attachments_PreNoteSystem" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_SalesOrder_OrderStatus" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_PrenotesUser_SiteLocation" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_SalesOrder_PrenotesUser" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_PreNoteSystem_SiteLocation" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_SalesOrder_PreNoteSystem" />
+        <AssociationConnector Association="ARCOeCardDBModel.FK_SalesOrder_SiteLocation" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ARCOeCardDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attachments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreNoteId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReferenceName" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSRAssignment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CustomerSequence" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CSR" Type="int" Nullable="false" />
+          <Property Name="CSRName" Type="nvarchar(max)" />
+          <Property Name="SiteLocation" Type="int" Nullable="false" />
+          <Property Name="CSREmail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CusAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerSequence" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="CustAddr1" Type="varchar" MaxLength="50" />
+          <Property Name="CustAddr2" Type="varchar" MaxLength="50" />
+          <Property Name="CustAddr3" Type="varchar" MaxLength="50" />
+          <Property Name="CustAddr4" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="SalespersonName" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="varchar" MaxLength="50" />
+          <Property Name="ChangedbyID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Primary_ShiptoArc" Type="varchar" MaxLength="1" />
+          <Property Name="StreetAddresses" Type="text" />
+          <Property Name="BilltoAddr1" Type="varchar" MaxLength="100" />
+          <Property Name="BilltoAddr2" Type="varchar" MaxLength="100" />
+          <Property Name="BilltoAddr3" Type="varchar" MaxLength="100" />
+          <Property Name="BilltoAddr4" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="25" />
+          <Property Name="State" Type="varchar" MaxLength="25" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Country" Type="varchar" MaxLength="25" />
+          <Property Name="Fax" Type="varchar" MaxLength="25" />
+          <Property Name="ShiptoNAME" Type="text" />
+          <Property Name="ShipToNameANDStreetAddresses" Type="text" />
+          <Property Name="ShiptoAddr1" Type="varchar" MaxLength="50" />
+          <Property Name="ShiptoAddr2" Type="varchar" MaxLength="100" />
+          <Property Name="ShiptoAddr3" Type="varchar" MaxLength="100" />
+          <Property Name="ShiptoAddr4" Type="varchar" MaxLength="100" />
+          <Property Name="ShipToCity" Type="varchar" MaxLength="25" />
+          <Property Name="ShipToState" Type="varchar" MaxLength="25" />
+          <Property Name="ShipToZip" Type="varchar" MaxLength="10" />
+          <Property Name="ShipToCountry" Type="varchar" MaxLength="25" />
+          <Property Name="ShipToSeq" Type="int" />
+          <Property Name="SalesPersonName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NotifyEmails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrenotesUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="Manager" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DefaultSite" Type="int" />
+          <Property Name="DisplayName" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="ModifiedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PreNoteSystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="SiteLocationId" Type="int" />
+          <Property Name="SalesOrderId" Type="nvarchar(max)" />
+          <Property Name="Notify" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="ShipToAddress" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SalesOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreNoteId" Type="int" />
+          <Property Name="SalesOrderNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FolderPath" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="SiteLocationId" Type="int" />
+          <Property Name="CustomerNumber" Type="varchar" MaxLength="25" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="AssignedTO" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="SiteLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteLocation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="SiteNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="UserSiteLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="SiteLocationId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Attachments_PreNoteSystem">
+          <End Role="PreNoteSystem" Type="Self.PreNoteSystem" Multiplicity="1" />
+          <End Role="Attachments" Type="Self.Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreNoteSystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="PreNoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrenotesUser_SiteLocation">
+          <End Role="SiteLocation" Type="Self.SiteLocation" Multiplicity="0..1" />
+          <End Role="PrenotesUser" Type="Self.PrenotesUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PrenotesUser">
+              <PropertyRef Name="DefaultSite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_PreNoteSystem_Customer' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_PreNoteSystem_Customer" />-->
+        <Association Name="FK_PreNoteSystem_SiteLocation">
+          <End Role="SiteLocation" Type="Self.SiteLocation" Multiplicity="0..1" />
+          <End Role="PreNoteSystem" Type="Self.PreNoteSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PreNoteSystem">
+              <PropertyRef Name="SiteLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_SalesOrder_Customer' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_SalesOrder_Customer" />-->
+        <Association Name="FK_SalesOrder_OrderStatus">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
+          <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_PrenotesUser">
+          <End Role="PrenotesUser" Type="Self.PrenotesUser" Multiplicity="0..1" />
+          <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrenotesUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="AssignedTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_PreNoteSystem">
+          <End Role="PreNoteSystem" Type="Self.PreNoteSystem" Multiplicity="0..1" />
+          <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreNoteSystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="PreNoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_SiteLocation">
+          <End Role="SiteLocation" Type="Self.SiteLocation" Multiplicity="0..1" />
+          <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="SiteLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ARCOeCardDBModelStoreContainer">
+          <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSRAssignment" EntityType="Self.CSRAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CusAddress" EntityType="Self.CusAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotifyEmails" EntityType="Self.NotifyEmails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrenotesUser" EntityType="Self.PrenotesUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreNoteSystem" EntityType="Self.PreNoteSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesOrder" EntityType="Self.SalesOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteLocation" EntityType="Self.SiteLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSiteLocation" EntityType="Self.UserSiteLocation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Attachments_PreNoteSystem" Association="Self.FK_Attachments_PreNoteSystem">
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystem" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrenotesUser_SiteLocation" Association="Self.FK_PrenotesUser_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocation" />
+            <End Role="PrenotesUser" EntitySet="PrenotesUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreNoteSystem_SiteLocation" Association="Self.FK_PreNoteSystem_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocation" />
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_OrderStatus" Association="Self.FK_SalesOrder_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="SalesOrder" EntitySet="SalesOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_PrenotesUser" Association="Self.FK_SalesOrder_PrenotesUser">
+            <End Role="PrenotesUser" EntitySet="PrenotesUser" />
+            <End Role="SalesOrder" EntitySet="SalesOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_PreNoteSystem" Association="Self.FK_SalesOrder_PreNoteSystem">
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystem" />
+            <End Role="SalesOrder" EntitySet="SalesOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_SiteLocation" Association="Self.FK_SalesOrder_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocation" />
+            <End Role="SalesOrder" EntitySet="SalesOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ARCOeCardDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ARCOeCardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attachments" EntityType="ARCOeCardDBModel.Attachment" />
+          <EntitySet Name="CSRAssignments" EntityType="ARCOeCardDBModel.CSRAssignment" />
+          <EntitySet Name="CusAddresses" EntityType="ARCOeCardDBModel.CusAddress" />
+          <EntitySet Name="Customers" EntityType="ARCOeCardDBModel.Customer" />
+          <EntitySet Name="NotifyEmails" EntityType="ARCOeCardDBModel.NotifyEmail" />
+          <EntitySet Name="OrderStatus" EntityType="ARCOeCardDBModel.OrderStatu" />
+          <EntitySet Name="PrenotesUsers" EntityType="ARCOeCardDBModel.PrenotesUser" />
+          <EntitySet Name="PreNoteSystems" EntityType="ARCOeCardDBModel.PreNoteSystem" />
+          <EntitySet Name="SalesOrders" EntityType="ARCOeCardDBModel.SalesOrder" />
+          <EntitySet Name="SiteLocations" EntityType="ARCOeCardDBModel.SiteLocation" />
+          <EntitySet Name="UserSiteLocations" EntityType="ARCOeCardDBModel.UserSiteLocation" />
+          <AssociationSet Name="FK_Attachments_PreNoteSystem" Association="ARCOeCardDBModel.FK_Attachments_PreNoteSystem">
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystems" />
+            <End Role="Attachment" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_OrderStatus" Association="ARCOeCardDBModel.FK_SalesOrder_OrderStatus">
+            <End Role="OrderStatu" EntitySet="OrderStatus" />
+            <End Role="SalesOrder" EntitySet="SalesOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrenotesUser_SiteLocation" Association="ARCOeCardDBModel.FK_PrenotesUser_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocations" />
+            <End Role="PrenotesUser" EntitySet="PrenotesUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_PrenotesUser" Association="ARCOeCardDBModel.FK_SalesOrder_PrenotesUser">
+            <End Role="PrenotesUser" EntitySet="PrenotesUsers" />
+            <End Role="SalesOrder" EntitySet="SalesOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreNoteSystem_SiteLocation" Association="ARCOeCardDBModel.FK_PreNoteSystem_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocations" />
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_PreNoteSystem" Association="ARCOeCardDBModel.FK_SalesOrder_PreNoteSystem">
+            <End Role="PreNoteSystem" EntitySet="PreNoteSystems" />
+            <End Role="SalesOrder" EntitySet="SalesOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesOrder_SiteLocation" Association="ARCOeCardDBModel.FK_SalesOrder_SiteLocation">
+            <End Role="SiteLocation" EntitySet="SiteLocations" />
+            <End Role="SalesOrder" EntitySet="SalesOrders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreNoteId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceName" Type="Guid" Nullable="false" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PreNoteSystem" Relationship="ARCOeCardDBModel.FK_Attachments_PreNoteSystem" FromRole="Attachment" ToRole="PreNoteSystem" />
+        </EntityType>
+        <EntityType Name="CSRAssignment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerSequence" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CSR" Type="Int32" Nullable="false" />
+          <Property Name="CSRName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLocation" Type="Int32" Nullable="false" />
+          <Property Name="CSREmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CusAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerSequence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustAddr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustAddr2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustAddr3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustAddr4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalespersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChangedbyID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Primary_ShiptoArc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddresses" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BilltoAddr1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BilltoAddr2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BilltoAddr3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BilltoAddr4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ShiptoNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToNameANDStreetAddresses" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ShiptoAddr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShiptoAddr2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShiptoAddr3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShiptoAddr4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToCity" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToState" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToZip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToCountry" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ShipToSeq" Type="Int32" />
+          <Property Name="SalesPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NotifyEmail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SalesOrders" Relationship="ARCOeCardDBModel.FK_SalesOrder_OrderStatus" FromRole="OrderStatu" ToRole="SalesOrder" />
+        </EntityType>
+        <EntityType Name="PrenotesUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="Manager" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DefaultSite" Type="Int32" />
+          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SiteLocation" Relationship="ARCOeCardDBModel.FK_PrenotesUser_SiteLocation" FromRole="PrenotesUser" ToRole="SiteLocation" />
+          <NavigationProperty Name="SalesOrders" Relationship="ARCOeCardDBModel.FK_SalesOrder_PrenotesUser" FromRole="PrenotesUser" ToRole="SalesOrder" />
+        </EntityType>
+        <EntityType Name="PreNoteSystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SiteLocationId" Type="Int32" />
+          <Property Name="SalesOrderId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notify" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="ShipToAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Attachments" Relationship="ARCOeCardDBModel.FK_Attachments_PreNoteSystem" FromRole="PreNoteSystem" ToRole="Attachment" />
+          <NavigationProperty Name="SiteLocation" Relationship="ARCOeCardDBModel.FK_PreNoteSystem_SiteLocation" FromRole="PreNoteSystem" ToRole="SiteLocation" />
+          <NavigationProperty Name="SalesOrders" Relationship="ARCOeCardDBModel.FK_SalesOrder_PreNoteSystem" FromRole="PreNoteSystem" ToRole="SalesOrder" />
+        </EntityType>
+        <EntityType Name="SalesOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreNoteId" Type="Int32" />
+          <Property Name="SalesOrderNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FolderPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="SiteLocationId" Type="Int32" />
+          <Property Name="CustomerNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AssignedTO" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="OrderStatu" Relationship="ARCOeCardDBModel.FK_SalesOrder_OrderStatus" FromRole="SalesOrder" ToRole="OrderStatu" />
+          <NavigationProperty Name="PrenotesUser" Relationship="ARCOeCardDBModel.FK_SalesOrder_PrenotesUser" FromRole="SalesOrder" ToRole="PrenotesUser" />
+          <NavigationProperty Name="PreNoteSystem" Relationship="ARCOeCardDBModel.FK_SalesOrder_PreNoteSystem" FromRole="SalesOrder" ToRole="PreNoteSystem" />
+          <NavigationProperty Name="SiteLocation" Relationship="ARCOeCardDBModel.FK_SalesOrder_SiteLocation" FromRole="SalesOrder" ToRole="SiteLocation" />
+          <Property Name="ModifiedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SiteLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteLocation1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="SiteNumber" Type="Int32" />
+          <NavigationProperty Name="PrenotesUsers" Relationship="ARCOeCardDBModel.FK_PrenotesUser_SiteLocation" FromRole="SiteLocation" ToRole="PrenotesUser" />
+          <NavigationProperty Name="PreNoteSystems" Relationship="ARCOeCardDBModel.FK_PreNoteSystem_SiteLocation" FromRole="SiteLocation" ToRole="PreNoteSystem" />
+          <NavigationProperty Name="SalesOrders" Relationship="ARCOeCardDBModel.FK_SalesOrder_SiteLocation" FromRole="SiteLocation" ToRole="SalesOrder" />
+        </EntityType>
+        <EntityType Name="UserSiteLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="SiteLocationId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Attachments_PreNoteSystem">
+          <End Type="ARCOeCardDBModel.PreNoteSystem" Role="PreNoteSystem" Multiplicity="1" />
+          <End Type="ARCOeCardDBModel.Attachment" Role="Attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreNoteSystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachment">
+              <PropertyRef Name="PreNoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_OrderStatus">
+          <End Type="ARCOeCardDBModel.OrderStatu" Role="OrderStatu" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.SalesOrder" Role="SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrenotesUser_SiteLocation">
+          <End Type="ARCOeCardDBModel.SiteLocation" Role="SiteLocation" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.PrenotesUser" Role="PrenotesUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PrenotesUser">
+              <PropertyRef Name="DefaultSite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_PrenotesUser">
+          <End Type="ARCOeCardDBModel.PrenotesUser" Role="PrenotesUser" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.SalesOrder" Role="SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrenotesUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="AssignedTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreNoteSystem_SiteLocation">
+          <End Type="ARCOeCardDBModel.SiteLocation" Role="SiteLocation" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.PreNoteSystem" Role="PreNoteSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PreNoteSystem">
+              <PropertyRef Name="SiteLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_PreNoteSystem">
+          <End Type="ARCOeCardDBModel.PreNoteSystem" Role="PreNoteSystem" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.SalesOrder" Role="SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreNoteSystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="PreNoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesOrder_SiteLocation">
+          <End Type="ARCOeCardDBModel.SiteLocation" Role="SiteLocation" Multiplicity="0..1" />
+          <End Type="ARCOeCardDBModel.SalesOrder" Role="SalesOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesOrder">
+              <PropertyRef Name="SiteLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ARCOeCardDBModelStoreContainer" CdmEntityContainer="ARCOeCardEntities">
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.Attachment">
+              <MappingFragment StoreEntitySet="Attachments">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="ReferenceName" ColumnName="ReferenceName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PreNoteId" ColumnName="PreNoteId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSRAssignments">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.CSRAssignment">
+              <MappingFragment StoreEntitySet="CSRAssignment">
+                <ScalarProperty Name="CSREmail" ColumnName="CSREmail" />
+                <ScalarProperty Name="SiteLocation" ColumnName="SiteLocation" />
+                <ScalarProperty Name="CSRName" ColumnName="CSRName" />
+                <ScalarProperty Name="CSR" ColumnName="CSR" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerSequence" ColumnName="CustomerSequence" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CusAddresses">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.CusAddress">
+              <MappingFragment StoreEntitySet="CusAddress">
+                <ScalarProperty Name="ChangedbyID" ColumnName="ChangedbyID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SalespersonName" ColumnName="SalespersonName" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CustAddr4" ColumnName="CustAddr4" />
+                <ScalarProperty Name="CustAddr3" ColumnName="CustAddr3" />
+                <ScalarProperty Name="CustAddr2" ColumnName="CustAddr2" />
+                <ScalarProperty Name="CustAddr1" ColumnName="CustAddr1" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CustomerSequence" ColumnName="CustomerSequence" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="SalesPersonName" ColumnName="SalesPersonName" />
+                <ScalarProperty Name="ShipToSeq" ColumnName="ShipToSeq" />
+                <ScalarProperty Name="ShipToCountry" ColumnName="ShipToCountry" />
+                <ScalarProperty Name="ShipToZip" ColumnName="ShipToZip" />
+                <ScalarProperty Name="ShipToState" ColumnName="ShipToState" />
+                <ScalarProperty Name="ShipToCity" ColumnName="ShipToCity" />
+                <ScalarProperty Name="ShiptoAddr4" ColumnName="ShiptoAddr4" />
+                <ScalarProperty Name="ShiptoAddr3" ColumnName="ShiptoAddr3" />
+                <ScalarProperty Name="ShiptoAddr2" ColumnName="ShiptoAddr2" />
+                <ScalarProperty Name="ShiptoAddr1" ColumnName="ShiptoAddr1" />
+                <ScalarProperty Name="ShipToNameANDStreetAddresses" ColumnName="ShipToNameANDStreetAddresses" />
+                <ScalarProperty Name="ShiptoNAME" ColumnName="ShiptoNAME" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="BilltoAddr4" ColumnName="BilltoAddr4" />
+                <ScalarProperty Name="BilltoAddr3" ColumnName="BilltoAddr3" />
+                <ScalarProperty Name="BilltoAddr2" ColumnName="BilltoAddr2" />
+                <ScalarProperty Name="BilltoAddr1" ColumnName="BilltoAddr1" />
+                <ScalarProperty Name="StreetAddresses" ColumnName="StreetAddresses" />
+                <ScalarProperty Name="Primary_ShiptoArc" ColumnName="Primary_ShiptoArc" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotifyEmails">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.NotifyEmail">
+              <MappingFragment StoreEntitySet="NotifyEmails">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.OrderStatu">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrenotesUsers">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.PrenotesUser">
+              <MappingFragment StoreEntitySet="PrenotesUser">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="DefaultSite" ColumnName="DefaultSite" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreNoteSystems">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.PreNoteSystem">
+              <MappingFragment StoreEntitySet="PreNoteSystem">
+                <ScalarProperty Name="ShipToAddress" ColumnName="ShipToAddress" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Notify" ColumnName="Notify" />
+                <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
+                <ScalarProperty Name="SiteLocationId" ColumnName="SiteLocationId" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesOrders">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.SalesOrder">
+              <MappingFragment StoreEntitySet="SalesOrder">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AssignedTO" ColumnName="AssignedTO" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="SiteLocationId" ColumnName="SiteLocationId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FolderPath" ColumnName="FolderPath" />
+                <ScalarProperty Name="SalesOrderNumber" ColumnName="SalesOrderNumber" />
+                <ScalarProperty Name="PreNoteId" ColumnName="PreNoteId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteLocations">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.SiteLocation">
+              <MappingFragment StoreEntitySet="SiteLocation">
+                <ScalarProperty Name="SiteNumber" ColumnName="SiteNumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SiteLocation1" ColumnName="SiteLocation" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSiteLocations">
+            <EntityTypeMapping TypeName="ARCOeCardDBModel.UserSiteLocation">
+              <MappingFragment StoreEntitySet="UserSiteLocation">
+                <ScalarProperty Name="SiteLocationId" ColumnName="SiteLocationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
